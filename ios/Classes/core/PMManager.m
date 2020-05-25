@@ -335,7 +335,10 @@
                         double qualityValue = (double) quality / 100.0;
                         imageData = UIImageJPEGRepresentation(result, qualityValue);
                       }
-
+                      if (!imageData) {
+                        [handler reply:nil];
+                        return;
+                      }
                       FlutterStandardTypedData *data = [FlutterStandardTypedData typedDataWithBytes:imageData];
                       [handler reply:data];
                   }];
